@@ -1,5 +1,9 @@
 import express from "express";
 import chalk from "chalk";
+import dotenv from "dotenv";
+
+// ⚙️ Load env.
+dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
