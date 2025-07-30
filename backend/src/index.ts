@@ -12,6 +12,17 @@ app.listen(PORT, () => {
   console.log(chalk.gray("Press Ctrl+C to stop the server."));
 });
 
+// 🎯 Main route.
+app.get("/", (req, res) => {
+  res.json({
+    success: true,
+    message: "Welcome to the this amazing API! 🎉",
+    version: "1.0.0",
+    endpoints: {},
+    timestamp: new Date(),
+  });
+});
+
 // 🎯 Route for health check.
 app.get("/health", (req, res) => {
   res.json({
