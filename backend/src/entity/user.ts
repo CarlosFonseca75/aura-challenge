@@ -8,7 +8,7 @@ import {
 
 @Entity()
 export class User {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn("uuid")
   id: number;
 
   @Column({ unique: true, length: 100 })
@@ -19,6 +19,9 @@ export class User {
 
   @Column({ length: 50 })
   lastName: string;
+
+  @Column()
+  password: string;
 
   @CreateDateColumn()
   createdAt: Date;

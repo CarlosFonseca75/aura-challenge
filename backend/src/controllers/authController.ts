@@ -5,7 +5,8 @@ export class AuthController {
   constructor(private authService: AuthService) {}
 
   register = async (req: Request, res: Response) => {
-    const register = await this.authService.register();
+    const input = req.body;
+    const register = await this.authService.register(input);
     res.status(register.status).json(register);
   };
 }

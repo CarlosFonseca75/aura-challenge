@@ -3,6 +3,8 @@ import { User } from "../entity/user";
 
 interface IUserRepository {
   find(): Promise<User[]>;
+  findOneByEmail(email: string): Promise<User | null>;
+  create(user: Partial<User>): Promise<User>;
 }
 
 export class UserRepository implements IUserRepository {
@@ -10,5 +12,14 @@ export class UserRepository implements IUserRepository {
 
   async find() {
     return this.repository.find();
+  }
+
+  async findOneByEmail(email: string) {
+    return this.repository.findOneBy({ email });
+  }
+
+  async create(data: Partial<User>) {
+    const user = this.repository.create(data);
+    return this.repository.save(user);
   }
 }
