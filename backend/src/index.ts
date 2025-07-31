@@ -1,18 +1,14 @@
 import express from "express";
 import chalk from "chalk";
-import dotenv from "dotenv";
 import helmet from "helmet";
 import cors from "cors";
 import morgan from "morgan";
+import env from "./config/env";
 import userRoutes from "./routes/userRoutes";
-
-// ⚙️ Load env.
-dotenv.config();
-
 import { AppDataSource } from "./data-source";
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = env.PORT || 3000;
 
 // 🛡️ Security middleware.
 app.use(helmet());
