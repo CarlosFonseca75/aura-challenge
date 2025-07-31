@@ -1,4 +1,4 @@
-import { HttpStatus } from "../enums/http";
+import { HttpStatus } from "./enums";
 
 export interface ApiResponse<T> {
   success: boolean;

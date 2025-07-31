@@ -1,6 +1,6 @@
-import { ApiResponse } from "../types/user";
+import type { ApiResponse } from "../common/types";
 import { UserRepository } from "../repositories/userRepository";
-import { HttpStatus } from "../enums/http";
+import { HttpStatus } from "../common/enums";
 
 export class UserService {
   constructor(private userRepository: UserRepository) {}
