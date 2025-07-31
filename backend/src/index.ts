@@ -8,6 +8,8 @@ import morgan from "morgan";
 // ⚙️ Load env.
 dotenv.config();
 
+import { AppDataSource } from "./data-source";
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -34,14 +36,6 @@ app.use(
   })
 );
 
-// 🚀 Start server.
-app.listen(PORT, () => {
-  console.log(chalk.green.bold("🚀 API started!"));
-  console.log(chalk.cyan(`📍 Server running on: http://localhost:${PORT}`));
-  console.log(chalk.magenta(`🏥 Health: http://localhost:${PORT}/health`));
-  console.log(chalk.gray("Press Ctrl+C to stop the server."));
-});
-
 // 🎯 Main route.
 app.get("/", (req, res) => {
   res.json({
@@ -63,8 +57,22 @@ app.get("/health", (req, res) => {
   });
 });
 
+AppDataSource.initialize()
+  .then(() => {
+    // 🚀 Start server.
+    app.listen(PORT, () => {
+      console.log(chalk.green.bold("🚀 API started!"));
+      console.log(chalk.cyan(`📍 Server running on: http://localhost:${PORT}`));
+      console.log(chalk.magenta(`🏥 Health: http://localhost:${PORT}/health`));
+      console.log(chalk.gray("Press Ctrl+C to stop the server."));
+    });
+  })
+  .catch((error) => {
+    console.log(chalk.red.bold("Error connecting to DB", error));
+  });
+
 // 🛑 Shutting down.
 process.on("SIGINT", () => {
-  console.log(chalk.red("\n🍕 See you later! Shutting down API..."));
+  console.log(chalk.red("\n👋 See you later! Shutting down API..."));
   process.exit(0);
 });
