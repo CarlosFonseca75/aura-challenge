@@ -11,7 +11,7 @@ const userService = new UserService(userRepository);
 const userController = new UserController(userService);
 
 // 🎯 GET /api/users - List all users.
-router.get("/", userController.getUsers);
+router.get("/", authValidator, userController.getUsers);
 
 // 🎯 GET /api/users/profile - Get profile.
 router.get("/profile", authValidator, userController.getProfile);
