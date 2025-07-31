@@ -5,6 +5,7 @@ import cors from "cors";
 import morgan from "morgan";
 import env from "./config/env";
 import userRoutes from "./routes/userRoutes";
+import authRoutes from "./routes/authRoutes";
 import errorHandler from "./middlewares/errorHandler";
 import { AppDataSource } from "./data-source";
 
@@ -47,6 +48,7 @@ app.get("/", (req, res) => {
 
 // 🎯 API Routes.
 app.use("/api/users", userRoutes);
+app.use("/api/auth", authRoutes);
 
 // 🎯 Route for health check.
 app.get("/health", (req, res) => {
@@ -69,6 +71,7 @@ AppDataSource.initialize()
       console.log(chalk.cyan(`📍 Server running on: http://localhost:${PORT}`));
       console.log(chalk.magenta(`🏥 Health: http://localhost:${PORT}/health`));
       console.log(chalk.blue(`💻 Users: http://localhost:${PORT}/api/users`));
+      console.log(chalk.blue(`🔐 Auth: http://localhost:${PORT}/api/auth`));
       console.log(chalk.gray("Press Ctrl+C to stop the server."));
     });
   })
