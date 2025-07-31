@@ -3,6 +3,7 @@ import { UserRepository } from "../repositories/userRepository";
 import { HttpStatus } from "../common/enums";
 import { RegisterInput, LoginInput } from "../common/schemas";
 import { User } from "../entity/user";
+import { Jwt } from "../utils/jwt";
 import bcrypt from "bcrypt";
 
 export class AuthService {
@@ -72,11 +73,19 @@ export class AuthService {
       };
     }
 
-    // TODO: Generate JWT.
+    const payload = {
+      id: user.id,
+      email: user.id,
+      firstName: user.firstName,
+      lastName: user.lastName,
+    };
+
+    const jwt = Jwt.sign(payload);
 
     return {
       success: true,
       message: "User logged in successfully! 🎉",
+      data: jwt,
       status: HttpStatus.OK,
       timestamp: new Date(),
     };
