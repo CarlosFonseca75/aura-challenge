@@ -5,6 +5,7 @@ interface IUserRepository {
   find(): Promise<User[]>;
   findOneByEmail(email: string): Promise<User | null>;
   create(user: Partial<User>): Promise<User>;
+  findById(id: string): Promise<User | null>;
 }
 
 export class UserRepository implements IUserRepository {
@@ -21,5 +22,9 @@ export class UserRepository implements IUserRepository {
   async create(data: Partial<User>) {
     const user = this.repository.create(data);
     return this.repository.save(user);
+  }
+
+  async findById(id: string) {
+    return this.repository.findOneBy({ id });
   }
 }

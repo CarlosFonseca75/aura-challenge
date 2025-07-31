@@ -1,4 +1,5 @@
-import { Request, Response, NextFunction } from "express";
+import type { Request, Response, NextFunction } from "express";
+import { HttpStatus } from "../common/enums";
 import { ZodObject } from "zod";
 
 function validateSchema(schema: ZodObject) {
@@ -8,11 +9,11 @@ function validateSchema(schema: ZodObject) {
     if (!result.success) {
       const errors = result.error.issues.map((e) => e.message);
 
-      return res.status(400).json({
+      return res.status(HttpStatus.BadRequest).json({
         success: false,
         message: "Validation failed.",
         errors,
-        status: 400,
+        status: HttpStatus.BadRequest,
         timestamp: new Date(),
       });
     }

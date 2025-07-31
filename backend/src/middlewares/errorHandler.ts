@@ -1,4 +1,5 @@
-import { NextFunction, Request, Response } from "express";
+import type { NextFunction, Request, Response } from "express";
+import { HttpStatus } from "../common/enums";
 import chalk from "chalk";
 
 function errorHandler(
@@ -13,10 +14,10 @@ function errorHandler(
     err instanceof Error ? err.stack : err
   );
 
-  res.status(500).json({
+  res.status(HttpStatus.InternalServerError).json({
     success: false,
-    message: "Internal server error",
-    status: 500,
+    message: "Internal server error.",
+    status: HttpStatus.InternalServerError,
     timestamp: new Date(),
   });
 }
