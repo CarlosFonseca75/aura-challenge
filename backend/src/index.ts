@@ -68,7 +68,7 @@ AppDataSource.initialize()
     });
   })
   .catch((error) => {
-    console.log(chalk.red.bold("Error connecting to DB", error));
+    console.log(chalk.red.bold("⚠️ Error connecting to DB:", error));
   });
 
 // 🛑 Shutting down.
