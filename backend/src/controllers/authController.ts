@@ -5,14 +5,14 @@ export class AuthController {
   constructor(private authService: AuthService) {}
 
   register = async (req: Request, res: Response) => {
-    const input = req.body;
-    const register = await this.authService.register(input);
+    const data = req.body;
+    const register = await this.authService.register(data);
     res.status(register.status).json(register);
   };
 
   login = async (req: Request, res: Response) => {
-    const input = req.body;
-    const register = await this.authService.login(input);
+    const data = req.body;
+    const register = await this.authService.login(data);
     res.status(register.status).json(register);
   };
 }

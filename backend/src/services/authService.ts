@@ -1,8 +1,8 @@
 import type { ApiResponse } from "../common/types";
+import type { RegisterInput, LoginInput } from "../common/schemas";
+import type { User } from "../entity/user";
 import { UserRepository } from "../repositories/userRepository";
 import { HttpStatus } from "../common/enums";
-import { RegisterInput, LoginInput } from "../common/schemas";
-import { User } from "../entity/user";
 import { Jwt } from "../utils/jwt";
 import bcrypt from "bcrypt";
 

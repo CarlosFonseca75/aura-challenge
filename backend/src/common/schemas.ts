@@ -23,3 +23,16 @@ export const loginSchema = z.object({
 });
 
 export type LoginInput = z.infer<typeof loginSchema>;
+
+export const updateProfileSchema = z
+  .object({
+    email: z
+      .string()
+      .regex(emailRegex, { message: "Invalid email format." })
+      .optional(),
+    firstName: z.string().optional(),
+    lastName: z.string().optional(),
+  })
+  .strict();
+
+export type UpdateProfileInput = z.infer<typeof updateProfileSchema>;

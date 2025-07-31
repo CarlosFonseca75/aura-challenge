@@ -1,4 +1,5 @@
-import type { ApiResponse, AuthenticatedUser } from "../common/types";
+import type { ApiResponse } from "../common/types";
+import type { User } from "../entity/user";
 import { UserRepository } from "../repositories/userRepository";
 import { HttpStatus } from "../common/enums";
 
@@ -17,9 +18,7 @@ export class UserService {
     };
   };
 
-  getProfile = async (data: AuthenticatedUser): Promise<ApiResponse<any>> => {
-    const { id } = data;
-
+  getProfile = async (id: string): Promise<ApiResponse<any>> => {
     const user = await this.userRepository.findById(id);
 
     if (!user) {
@@ -37,6 +36,47 @@ export class UserService {
       success: true,
       message: "Profile found successfully! 🎉",
       data: userWithoutPwd,
+      status: HttpStatus.OK,
+      timestamp: new Date(),
+    };
+  };
+
+  updateProfile = async (
+    id: string,
+    data: Partial<User>
+  ): Promise<ApiResponse<any>> => {
+    const user = await this.userRepository.findById(id);
+
+    if (!user) {
+      return {
+        success: false,
+        message: "Profile not found! 🔍",
+        status: HttpStatus.NotFound,
+        timestamp: new Date(),
+      };
+    }
+
+    const { email } = data;
+
+    if (email) {
+      const emailExists = await this.userRepository.findOneByEmail(email);
+
+      if (emailExists.id !== id) {
+        return {
+          success: false,
+          message: "Email already in use! ⚠️",
+          status: HttpStatus.Conflict,
+          timestamp: new Date(),
+        };
+      }
+    }
+
+    const updatedUser = await this.userRepository.update(id, data);
+
+    return {
+      success: true,
+      message: "Profile updated successfully! 🎉",
+      data: updatedUser,
       status: HttpStatus.OK,
       timestamp: new Date(),
     };

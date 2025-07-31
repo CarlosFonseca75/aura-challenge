@@ -11,8 +11,15 @@ export class UserController {
   };
 
   getProfile = async (req: CustomRequest, res: Response) => {
-    const user = req.user;
-    const profile = await this.userService.getProfile(user);
+    const id = req.user.id;
+    const profile = await this.userService.getProfile(id);
+    res.status(profile.status).json(profile);
+  };
+
+  updateProfile = async (req: CustomRequest, res: Response) => {
+    const id = req.user.id;
+    const data = req.body;
+    const profile = await this.userService.updateProfile(id, data);
     res.status(profile.status).json(profile);
   };
 }
