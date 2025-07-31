@@ -1,12 +1,38 @@
 import express from "express";
 import chalk from "chalk";
 import dotenv from "dotenv";
+import helmet from "helmet";
+import cors from "cors";
+import morgan from "morgan";
 
 // ⚙️ Load env.
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+// 🛡️ Security middleware.
+app.use(helmet());
+
+// 🌐 Cors.
+app.use(cors());
+
+// 📝 Logging.
+app.use(
+  morgan((tokens, req, res) => {
+    const method = tokens.method(req, res);
+    const url = tokens.url(req, res);
+    const status = tokens.status(req, res);
+    const responseTime = tokens["response-time"](req, res);
+
+    let color = chalk.green;
+
+    if (status && parseInt(status) >= 400) color = chalk.red;
+    if (status && parseInt(status) >= 300) color = chalk.yellow;
+
+    return color(`${method} ${url} ${status} ${responseTime}ms`);
+  })
+);
 
 // 🚀 Start server.
 app.listen(PORT, () => {
