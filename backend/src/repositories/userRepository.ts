@@ -17,7 +17,16 @@ export class UserRepository implements IUserRepository {
   }
 
   async find() {
-    return this.repository.find();
+    return this.repository.find({
+      select: [
+        "id",
+        "email",
+        "firstName",
+        "lastName",
+        "createdAt",
+        "updatedAt",
+      ],
+    });
   }
 
   async findOneByEmail(email: string) {
