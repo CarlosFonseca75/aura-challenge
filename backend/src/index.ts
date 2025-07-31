@@ -5,6 +5,7 @@ import cors from "cors";
 import morgan from "morgan";
 import env from "./config/env";
 import userRoutes from "./routes/userRoutes";
+import errorHandler from "./middlewares/errorHandler";
 import { AppDataSource } from "./data-source";
 
 const app = express();
@@ -56,6 +57,9 @@ app.get("/health", (req, res) => {
     timestamp: new Date(),
   });
 });
+
+// ⚠️ Global error handler.
+app.use(errorHandler);
 
 AppDataSource.initialize()
   .then(() => {
