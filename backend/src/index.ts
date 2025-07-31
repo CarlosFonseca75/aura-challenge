@@ -35,6 +35,9 @@ app.use(
   })
 );
 
+// 📦 Parse JSON.
+app.use(express.json());
+
 // 🎯 Main route.
 app.get("/", (req, res) => {
   res.json({
