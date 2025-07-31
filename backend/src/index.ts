@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import helmet from "helmet";
 import cors from "cors";
 import morgan from "morgan";
+import userRoutes from "./routes/userRoutes";
 
 // ⚙️ Load env.
 dotenv.config();
@@ -47,6 +48,9 @@ app.get("/", (req, res) => {
   });
 });
 
+// 🎯 API Routes.
+app.use("/api/users", userRoutes);
+
 // 🎯 Route for health check.
 app.get("/health", (req, res) => {
   res.json({
@@ -64,6 +68,7 @@ AppDataSource.initialize()
       console.log(chalk.green.bold("🚀 API started!"));
       console.log(chalk.cyan(`📍 Server running on: http://localhost:${PORT}`));
       console.log(chalk.magenta(`🏥 Health: http://localhost:${PORT}/health`));
+      console.log(chalk.blue(`💻 Users: http://localhost:${PORT}/api/users`));
       console.log(chalk.gray("Press Ctrl+C to stop the server."));
     });
   })
