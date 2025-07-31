@@ -10,13 +10,13 @@ function errorHandler(
 ) {
   // TODO: Send these logs to a centralized logs service.
   console.error(
-    chalk.red.bold("💥 Unhandled error:"),
+    chalk.red.bold("Unhandled error:"),
     err instanceof Error ? err.stack : err
   );
 
   res.status(HttpStatus.InternalServerError).json({
     success: false,
-    message: "Internal server error.",
+    message: "Internal server error!",
     status: HttpStatus.InternalServerError,
     timestamp: new Date(),
   });

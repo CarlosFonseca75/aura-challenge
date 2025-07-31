@@ -12,13 +12,13 @@ const userRepository = new UserRepository();
 const userService = new UserService(userRepository);
 const userController = new UserController(userService);
 
-// 🎯 GET /api/users - List all users.
+// GET /api/users - List all users.
 router.get("/", authValidator, userController.getUsers);
 
-// 🎯 GET /api/users/profile - Get profile.
+// GET /api/users/profile - Get profile.
 router.get("/profile", authValidator, userController.getProfile);
 
-// 🎯 PUT /api/users/profile - Update profile.
+// PUT /api/users/profile - Update profile.
 router.put(
   "/profile",
   authValidator,

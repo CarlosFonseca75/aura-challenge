@@ -8,7 +8,7 @@ function authValidator(req: Request, res: Response, next: NextFunction) {
   if (!authHeader || !authHeader.startsWith("Bearer ")) {
     return res.status(HttpStatus.Unauthorized).json({
       success: false,
-      message: "Unauthorized: Missing or invalid token! 🔑",
+      message: "Unauthorized: Missing or invalid token!",
       status: HttpStatus.Unauthorized,
       timestamp: new Date(),
     });
@@ -21,7 +21,7 @@ function authValidator(req: Request, res: Response, next: NextFunction) {
   if (!decoded) {
     return res.status(HttpStatus.Unauthorized).json({
       success: false,
-      message: "Unauthorized: Invalid token! 🔑",
+      message: "Unauthorized: Invalid token!",
       status: HttpStatus.Unauthorized,
       timestamp: new Date(),
     });

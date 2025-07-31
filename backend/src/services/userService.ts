@@ -11,7 +11,7 @@ export class UserService {
 
     return {
       success: true,
-      message: `We found ${users.length} users! 🎉`,
+      message: `We found ${users.length} users!`,
       data: users,
       status: HttpStatus.OK,
       timestamp: new Date(),
@@ -24,7 +24,7 @@ export class UserService {
     if (!user) {
       return {
         success: false,
-        message: "Profile not found! 😅",
+        message: "Profile not found!",
         status: HttpStatus.NotFound,
         timestamp: new Date(),
       };
@@ -34,7 +34,7 @@ export class UserService {
 
     return {
       success: true,
-      message: "Profile found successfully! 🎉",
+      message: "Profile found successfully!",
       data: userWithoutPwd,
       status: HttpStatus.OK,
       timestamp: new Date(),
@@ -50,7 +50,7 @@ export class UserService {
     if (!user) {
       return {
         success: false,
-        message: "Profile not found! 🔍",
+        message: "Profile not found!",
         status: HttpStatus.NotFound,
         timestamp: new Date(),
       };
@@ -64,7 +64,7 @@ export class UserService {
       if (emailExists.id !== id) {
         return {
           success: false,
-          message: "Email already in use! ⚠️",
+          message: "Email already in use!",
           status: HttpStatus.Conflict,
           timestamp: new Date(),
         };
@@ -75,7 +75,7 @@ export class UserService {
 
     return {
       success: true,
-      message: "Profile updated successfully! 🎉",
+      message: "Profile updated successfully!",
       data: updatedUser,
       status: HttpStatus.OK,
       timestamp: new Date(),

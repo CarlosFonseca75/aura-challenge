@@ -11,7 +11,7 @@ function validateSchema(schema: ZodObject) {
 
       return res.status(HttpStatus.BadRequest).json({
         success: false,
-        message: "Validation failed.",
+        message: "Validation failed!",
         errors,
         status: HttpStatus.BadRequest,
         timestamp: new Date(),

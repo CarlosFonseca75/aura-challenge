@@ -17,7 +17,7 @@ export class AuthService {
     if (existingUser) {
       return {
         success: false,
-        message: "User already exists. 😅",
+        message: "User already exists!",
         status: HttpStatus.Conflict,
         timestamp: new Date(),
       };
@@ -36,7 +36,7 @@ export class AuthService {
 
     return {
       success: true,
-      message: "User registered successfully! 🎉",
+      message: "User registered successfully!",
       data: {
         id: newUser.id,
         email: newUser.email,
@@ -56,7 +56,7 @@ export class AuthService {
     if (!user) {
       return {
         success: false,
-        message: "Invalid credentials! 🔐",
+        message: "Invalid credentials!",
         status: HttpStatus.Unauthorized,
         timestamp: new Date(),
       };
@@ -67,7 +67,7 @@ export class AuthService {
     if (!isPasswordValid) {
       return {
         success: false,
-        message: "Invalid credentials! 🔐",
+        message: "Invalid credentials!",
         status: HttpStatus.Unauthorized,
         timestamp: new Date(),
       };
@@ -84,7 +84,7 @@ export class AuthService {
 
     return {
       success: true,
-      message: "User logged in successfully! 🎉",
+      message: "User logged in successfully!",
       data: jwt,
       status: HttpStatus.OK,
       timestamp: new Date(),
