@@ -2,7 +2,7 @@ import { Router } from "express";
 import { UserRepository } from "../repositories/userRepository";
 import { AuthService } from "../services/authService";
 import { AuthController } from "../controllers/authController";
-import { registerSchema } from "../common/schemas";
+import { registerSchema, loginSchema } from "../common/schemas";
 import validateSchema from "../middlewares/zodValidator";
 
 const router: Router = Router();
@@ -17,5 +17,8 @@ router.post(
   validateSchema(registerSchema),
   userController.register
 );
+
+// 🎯 POST /api/auth/login - Login user.
+router.post("/login", validateSchema(loginSchema), userController.login);
 
 export default router;

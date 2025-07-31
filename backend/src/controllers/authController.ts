@@ -9,4 +9,10 @@ export class AuthController {
     const register = await this.authService.register(input);
     res.status(register.status).json(register);
   };
+
+  login = async (req: Request, res: Response) => {
+    const input = req.body;
+    const register = await this.authService.login(input);
+    res.status(register.status).json(register);
+  };
 }

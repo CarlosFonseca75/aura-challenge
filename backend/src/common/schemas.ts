@@ -14,3 +14,12 @@ export const registerSchema = z.object({
 });
 
 export type RegisterInput = z.infer<typeof registerSchema>;
+
+export const loginSchema = z.object({
+  email: z
+    .string("Email is required.")
+    .regex(emailRegex, { message: "Invalid email format." }),
+  password: z.string("Password is required."),
+});
+
+export type LoginInput = z.infer<typeof loginSchema>;

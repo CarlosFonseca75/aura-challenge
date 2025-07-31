@@ -1,7 +1,7 @@
 import type { ApiResponse } from "../common/types";
 import { UserRepository } from "../repositories/userRepository";
 import { HttpStatus } from "../common/enums";
-import { RegisterInput } from "../common/schemas";
+import { RegisterInput, LoginInput } from "../common/schemas";
 import { User } from "../entity/user";
 import bcrypt from "bcrypt";
 
@@ -42,6 +42,41 @@ export class AuthService {
         firstName: newUser.firstName,
         lastName: newUser.lastName,
       },
+      status: HttpStatus.OK,
+      timestamp: new Date(),
+    };
+  };
+
+  login = async (data: LoginInput): Promise<ApiResponse<any>> => {
+    const { email, password } = data;
+
+    const user = await this.userRepository.findOneByEmail(email);
+
+    if (!user) {
+      return {
+        success: false,
+        message: "Invalid credentials! 🔐",
+        status: HttpStatus.Unauthorized,
+        timestamp: new Date(),
+      };
+    }
+
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+
+    if (!isPasswordValid) {
+      return {
+        success: false,
+        message: "Invalid credentials! 🔐",
+        status: HttpStatus.Unauthorized,
+        timestamp: new Date(),
+      };
+    }
+
+    // TODO: Generate JWT.
+
+    return {
+      success: true,
+      message: "User logged in successfully! 🎉",
       status: HttpStatus.OK,
       timestamp: new Date(),
     };
