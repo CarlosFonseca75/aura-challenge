@@ -2,6 +2,7 @@ import type { ApiResponse } from "../common/types";
 import type { User } from "../entity/user";
 import { UserRepository } from "../repositories/userRepository";
 import { HttpStatus } from "../common/enums";
+import { Dayjs } from "../utils/date";
 
 export class UserService {
   constructor(private userRepository: UserRepository) {}
@@ -14,7 +15,7 @@ export class UserService {
       message: `We found ${users.length} users!`,
       data: users,
       status: HttpStatus.OK,
-      timestamp: new Date(),
+      timestamp: Dayjs.nowUtc(),
     };
   };
 
@@ -26,7 +27,7 @@ export class UserService {
         success: false,
         message: "Profile not found!",
         status: HttpStatus.NotFound,
-        timestamp: new Date(),
+        timestamp: Dayjs.nowUtc(),
       };
     }
 
@@ -37,7 +38,7 @@ export class UserService {
       message: "Profile found successfully!",
       data: userWithoutPwd,
       status: HttpStatus.OK,
-      timestamp: new Date(),
+      timestamp: Dayjs.nowUtc(),
     };
   };
 
@@ -52,7 +53,7 @@ export class UserService {
         success: false,
         message: "Profile not found!",
         status: HttpStatus.NotFound,
-        timestamp: new Date(),
+        timestamp: Dayjs.nowUtc(),
       };
     }
 
@@ -66,7 +67,7 @@ export class UserService {
           success: false,
           message: "Email already in use!",
           status: HttpStatus.Conflict,
-          timestamp: new Date(),
+          timestamp: Dayjs.nowUtc(),
         };
       }
     }
@@ -78,7 +79,7 @@ export class UserService {
       message: "Profile updated successfully!",
       data: updatedUser,
       status: HttpStatus.OK,
-      timestamp: new Date(),
+      timestamp: Dayjs.nowUtc(),
     };
   };
 }

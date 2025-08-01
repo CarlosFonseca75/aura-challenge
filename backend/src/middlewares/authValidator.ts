@@ -2,6 +2,7 @@ import type { NextFunction, Response } from "express";
 import { HttpStatus } from "../common/enums";
 import { Jwt } from "../utils/jwt";
 import type { AuthenticatedUser, CustomRequest } from "../common/types";
+import { Dayjs } from "../utils/date";
 
 function authValidator(req: CustomRequest, res: Response, next: NextFunction) {
   const authHeader = req.headers.authorization;
@@ -11,7 +12,7 @@ function authValidator(req: CustomRequest, res: Response, next: NextFunction) {
       success: false,
       message: "Unauthorized: Missing or invalid token!",
       status: HttpStatus.Unauthorized,
-      timestamp: new Date(),
+      timestamp: Dayjs.nowUtc(),
     });
   }
 
@@ -24,7 +25,7 @@ function authValidator(req: CustomRequest, res: Response, next: NextFunction) {
       success: false,
       message: "Unauthorized: Invalid token!",
       status: HttpStatus.Unauthorized,
-      timestamp: new Date(),
+      timestamp: Dayjs.nowUtc(),
     });
   }
 

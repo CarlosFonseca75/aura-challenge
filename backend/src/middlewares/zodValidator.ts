@@ -1,6 +1,7 @@
 import type { Request, Response, NextFunction } from "express";
 import { HttpStatus } from "../common/enums";
 import type { ZodObject } from "zod";
+import { Dayjs } from "../utils/date";
 
 function validateSchema(schema: ZodObject) {
   return (req: Request, res: Response, next: NextFunction) => {
@@ -14,7 +15,7 @@ function validateSchema(schema: ZodObject) {
         message: "Validation failed!",
         errors,
         status: HttpStatus.BadRequest,
-        timestamp: new Date(),
+        timestamp: Dayjs.nowUtc(),
       });
     }
 

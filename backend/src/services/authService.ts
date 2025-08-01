@@ -4,6 +4,7 @@ import type { User } from "../entity/user";
 import { UserRepository } from "../repositories/userRepository";
 import { HttpStatus } from "../common/enums";
 import { Jwt } from "../utils/jwt";
+import { Dayjs } from "../utils/date";
 import bcrypt from "bcrypt";
 
 export class AuthService {
@@ -21,7 +22,7 @@ export class AuthService {
         success: false,
         message: "Invalid credentials!",
         status: HttpStatus.Conflict,
-        timestamp: new Date(),
+        timestamp: Dayjs.nowUtc(),
       };
     }
 
@@ -46,7 +47,7 @@ export class AuthService {
         lastName: newUser.lastName,
       },
       status: HttpStatus.OK,
-      timestamp: new Date(),
+      timestamp: Dayjs.nowUtc(),
     };
   };
 
@@ -60,7 +61,7 @@ export class AuthService {
         success: false,
         message: "Invalid credentials!",
         status: HttpStatus.Unauthorized,
-        timestamp: new Date(),
+        timestamp: Dayjs.nowUtc(),
       };
     }
 
@@ -71,7 +72,7 @@ export class AuthService {
         success: false,
         message: "Invalid credentials!",
         status: HttpStatus.Unauthorized,
-        timestamp: new Date(),
+        timestamp: Dayjs.nowUtc(),
       };
     }
 
@@ -89,7 +90,7 @@ export class AuthService {
       message: "User logged in successfully!",
       data: jwt,
       status: HttpStatus.OK,
-      timestamp: new Date(),
+      timestamp: Dayjs.nowUtc(),
     };
   };
 }

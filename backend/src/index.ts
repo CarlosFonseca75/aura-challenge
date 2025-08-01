@@ -7,6 +7,7 @@ import env from "./config/env";
 import userRoutes from "./routes/userRoutes";
 import authRoutes from "./routes/authRoutes";
 import errorHandler from "./middlewares/errorHandler";
+import { Dayjs } from "./utils/date";
 import { AppDataSource } from "./data-source";
 
 const app = express();
@@ -45,7 +46,7 @@ app.get("/", (req, res) => {
     message: "Welcome to this amazing API! 🎉",
     version: "1.0.0",
     endpoints: {},
-    timestamp: new Date(),
+    timestamp: Dayjs.nowUtc(),
   });
 });
 
@@ -59,7 +60,7 @@ app.get("/health", (req, res) => {
     success: true,
     message: "API working correctly! 🚀",
     status: "healthy",
-    timestamp: new Date(),
+    timestamp: Dayjs.nowUtc(),
   });
 });
 

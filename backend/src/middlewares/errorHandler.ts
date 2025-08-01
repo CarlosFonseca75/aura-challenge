@@ -1,5 +1,6 @@
 import type { NextFunction, Request, Response } from "express";
 import { HttpStatus } from "../common/enums";
+import { Dayjs } from "../utils/date";
 import chalk from "chalk";
 
 function errorHandler(
@@ -18,7 +19,7 @@ function errorHandler(
     success: false,
     message: "Internal server error!",
     status: HttpStatus.InternalServerError,
-    timestamp: new Date(),
+    timestamp: Dayjs.nowUtc(),
   });
 }
 
