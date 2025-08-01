@@ -2,10 +2,10 @@
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { LoginSchema } from "@/common/schemas";
 import { Button } from "@/components/common/Button";
 import { Icon } from "@/components/common/Icon";
 import { FormInput } from "@/components/common/FormInput";
+import { LoginSchema } from "@/schemas";
 import styles from "./styles/LoginForm.module.scss";
 
 interface FormData {
