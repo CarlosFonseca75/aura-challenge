@@ -17,6 +17,10 @@ export interface AuthenticatedUser {
   lastName: string;
 }
 
+export interface LoginResponse extends AuthenticatedUser {
+  token: string;
+}
+
 export interface CustomRequest extends Request {
   user: AuthenticatedUser;
 }

@@ -1,4 +1,4 @@
-import type { ApiResponse } from "../common/types";
+import type { ApiResponse, LoginResponse } from "../common/types";
 import type { RegisterInput, LoginInput } from "../common/schemas";
 import type { User } from "../entity/user";
 import { UserRepository } from "../repositories/userRepository";
@@ -51,7 +51,7 @@ export class AuthService {
     };
   };
 
-  login = async (data: LoginInput): Promise<ApiResponse<string>> => {
+  login = async (data: LoginInput): Promise<ApiResponse<LoginResponse>> => {
     const { email, password } = data;
 
     const user = await this.userRepository.findOneByEmail(email);
@@ -88,7 +88,7 @@ export class AuthService {
     return {
       success: true,
       message: "User logged in successfully!",
-      data: jwt,
+      data: { ...payload, token: jwt },
       status: HttpStatus.OK,
       timestamp: Dayjs.nowUtc(),
     };
