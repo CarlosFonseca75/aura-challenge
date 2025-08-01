@@ -1,8 +1,9 @@
-import type { NextFunction, Request, Response } from "express";
+import type { NextFunction, Response } from "express";
 import { HttpStatus } from "../common/enums";
 import { Jwt } from "../utils/jwt";
+import type { AuthenticatedUser, CustomRequest } from "../common/types";
 
-function authValidator(req: Request, res: Response, next: NextFunction) {
+function authValidator(req: CustomRequest, res: Response, next: NextFunction) {
   const authHeader = req.headers.authorization;
 
   if (!authHeader || !authHeader.startsWith("Bearer ")) {
@@ -16,7 +17,7 @@ function authValidator(req: Request, res: Response, next: NextFunction) {
 
   const token = authHeader.split(" ")[1];
 
-  const decoded = Jwt.verify(token);
+  const decoded = Jwt.verify(token) as AuthenticatedUser;
 
   if (!decoded) {
     return res.status(HttpStatus.Unauthorized).json({
@@ -27,7 +28,7 @@ function authValidator(req: Request, res: Response, next: NextFunction) {
     });
   }
 
-  (req as any).user = decoded;
+  req.user = decoded;
 
   next();
 }

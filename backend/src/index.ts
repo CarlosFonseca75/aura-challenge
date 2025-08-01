@@ -42,7 +42,7 @@ app.use(express.json());
 app.get("/", (req, res) => {
   res.json({
     success: true,
-    message: "Welcome to the this amazing API! 🎉",
+    message: "Welcome to this amazing API! 🎉",
     version: "1.0.0",
     endpoints: {},
     timestamp: new Date(),

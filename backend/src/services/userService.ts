@@ -6,7 +6,7 @@ import { HttpStatus } from "../common/enums";
 export class UserService {
   constructor(private userRepository: UserRepository) {}
 
-  getUsers = async (): Promise<ApiResponse<any>> => {
+  getUsers = async (): Promise<ApiResponse<User[]>> => {
     const users = await this.userRepository.find();
 
     return {
@@ -18,7 +18,7 @@ export class UserService {
     };
   };
 
-  getProfile = async (id: string): Promise<ApiResponse<any>> => {
+  getProfile = async (id: string): Promise<ApiResponse<Partial<User>>> => {
     const user = await this.userRepository.findById(id);
 
     if (!user) {
@@ -44,7 +44,7 @@ export class UserService {
   updateProfile = async (
     id: string,
     data: Partial<User>
-  ): Promise<ApiResponse<any>> => {
+  ): Promise<ApiResponse<User>> => {
     const user = await this.userRepository.findById(id);
 
     if (!user) {

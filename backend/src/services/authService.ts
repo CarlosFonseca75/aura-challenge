@@ -9,7 +9,9 @@ import bcrypt from "bcrypt";
 export class AuthService {
   constructor(private userRepository: UserRepository) {}
 
-  register = async (data: RegisterInput): Promise<ApiResponse<any>> => {
+  register = async (
+    data: RegisterInput
+  ): Promise<ApiResponse<Partial<User>>> => {
     const { email, password, firstName, lastName } = data;
 
     const existingUser = await this.userRepository.findOneByEmail(email);
@@ -17,7 +19,7 @@ export class AuthService {
     if (existingUser) {
       return {
         success: false,
-        message: "User already exists!",
+        message: "Invalid credentials!",
         status: HttpStatus.Conflict,
         timestamp: new Date(),
       };
@@ -48,7 +50,7 @@ export class AuthService {
     };
   };
 
-  login = async (data: LoginInput): Promise<ApiResponse<any>> => {
+  login = async (data: LoginInput): Promise<ApiResponse<string>> => {
     const { email, password } = data;
 
     const user = await this.userRepository.findOneByEmail(email);

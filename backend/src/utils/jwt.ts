@@ -1,4 +1,4 @@
-import jwt from "jsonwebtoken";
+import jwt, { type JwtPayload } from "jsonwebtoken";
 import env from "../config/env";
 
 export class Jwt {
@@ -8,7 +8,7 @@ export class Jwt {
     });
   }
 
-  static verify(token: string): any {
+  static verify(token: string): JwtPayload | string {
     try {
       return jwt.verify(token, env.JWT_SECRET);
     } catch (error) {

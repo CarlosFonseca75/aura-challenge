@@ -1,6 +1,6 @@
 import type { Request, Response, NextFunction } from "express";
 import { HttpStatus } from "../common/enums";
-import { ZodObject } from "zod";
+import type { ZodObject } from "zod";
 
 function validateSchema(schema: ZodObject) {
   return (req: Request, res: Response, next: NextFunction) => {
