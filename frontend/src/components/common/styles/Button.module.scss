@@ -1,0 +1,29 @@
+.button {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  border: none;
+  border-radius: 1rem;
+
+  &:hover {
+    cursor: pointer;
+    background-color: var(--primary-light);
+  }
+
+  &--sm {
+    padding: 1rem 2rem;
+    font-size: 1.4rem;
+  }
+
+  &--md {
+    padding: 1.3rem 2.5rem;
+    font-size: 1.6rem;
+  }
+
+  &--lg {
+    padding: 1.8rem 3rem;
+    font-size: 1.8rem;
+  }
+}
