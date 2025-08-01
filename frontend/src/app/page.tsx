@@ -1,7 +1,9 @@
+import { LoginCard } from "@/components/home/LoginCard";
+
 export default function Home() {
   return (
     <main>
-      <h1>Home!</h1>
+      <LoginCard />
     </main>
   );
 }

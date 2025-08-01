@@ -1,0 +1,57 @@
+"use client";
+
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { LoginSchema } from "@/common/schemas";
+import { Button } from "@/components/common/Button";
+import { Icon } from "@/components/common/Icon";
+import { FormInput } from "@/components/common/FormInput";
+import styles from "./styles/LoginForm.module.scss";
+
+interface FormData {
+  email: string;
+  password: string;
+}
+
+const LoginForm = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>({
+    resolver: zodResolver(LoginSchema),
+  });
+
+  const onSubmit = (data: FormData) => {
+    console.log("Works!", data);
+  };
+
+  return (
+    <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+      <FormInput
+        label="Email:"
+        type="email"
+        placeholder="Email"
+        name="email"
+        register={register}
+        error={errors.email}
+      />
+
+      <FormInput
+        label="Password:"
+        type="password"
+        placeholder="Password"
+        name="password"
+        register={register}
+        error={errors.password}
+      />
+
+      <Button size="md" title="Let's Go!">
+        <Icon name="RocketTakeoffFill" aria-hidden="true" />
+        Let&apos;s Go!
+      </Button>
+    </form>
+  );
+};
+
+export { LoginForm };
