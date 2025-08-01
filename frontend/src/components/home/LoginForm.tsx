@@ -1,11 +1,15 @@
 "use client";
 
+import { useState } from "react";
+import { Status } from "@/types";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/common/Button";
 import { Icon } from "@/components/common/Icon";
 import { FormInput } from "@/components/common/FormInput";
 import { LoginSchema } from "@/schemas";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import styles from "./styles/LoginForm.module.scss";
 
 interface FormData {
@@ -14,16 +18,41 @@ interface FormData {
 }
 
 const LoginForm = () => {
+  const [status, setStatus] = useState<Status>("idle");
+
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>({
     resolver: zodResolver(LoginSchema),
+    defaultValues: {
+      email: "cardfonseca07@gmail.com",
+      password: "12345678",
+    },
   });
 
-  const onSubmit = (data: FormData) => {
-    console.log("Works!", data);
+  const onSubmit = async (data: FormData) => {
+    setStatus("loading");
+
+    const res = await signIn("credentials", {
+      email: data.email,
+      password: data.password,
+      redirect: false,
+    });
+
+    if (!res?.ok) {
+      // TODO: Add alert system.
+      console.log("Error", res?.error);
+      setStatus("error");
+      return;
+    }
+
+    setStatus("success");
+
+    router.push("/dashboard");
   };
 
   return (
