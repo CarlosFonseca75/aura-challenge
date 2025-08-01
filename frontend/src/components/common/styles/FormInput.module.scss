@@ -8,11 +8,23 @@
   font-weight: bold;
 }
 
+.inputContainer {
+  display: grid;
+  position: relative;
+}
+
 .input {
   padding: 1.3rem 1.5rem;
   border-radius: 1rem;
   border: 1px solid var(--border-color);
   font-size: 1.6rem;
+}
+
+.password {
+  position: absolute;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .error {

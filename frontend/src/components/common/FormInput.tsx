@@ -1,27 +1,52 @@
-import { useId } from "react";
+import { useId, useState, type InputHTMLAttributes as InputAttrs } from "react";
 import type { FieldError, UseFormRegister } from "react-hook-form";
+import { Icon } from "./Icon";
 import styles from "./styles/FormInput.module.scss";
 
-interface FormInputProps {
-  type: string;
+interface FormInputProps extends InputAttrs<HTMLInputElement> {
   label: string;
   name: string;
-  placeholder?: string;
   error?: FieldError;
   valueAsNumber?: boolean;
   register: UseFormRegister<any>;
 }
 
+interface PasswordToggleProps {
+  isVisible: boolean;
+  onToggle: () => void;
+}
+
+const PasswordToggle = ({ isVisible, onToggle }: PasswordToggleProps) => {
+  const iconName = isVisible ? "EyeSlashFill" : "EyeFill";
+  const iconTitle = isVisible ? "Hide Password" : "Show Password";
+
+  return (
+    <Icon
+      name={iconName}
+      title={iconTitle}
+      aria-label={iconTitle}
+      onClick={onToggle}
+      className={styles.password}
+      isBtn
+    />
+  );
+};
+
 const FormInput = ({
-  type,
+  type = "text",
   label,
   name,
   placeholder,
-  register,
   error,
+  register,
   valueAsNumber,
+  ...rest
 }: FormInputProps) => {
   const id = useId();
+  const [isPwdVisible, setIsPwdVisible] = useState(false);
+
+  const isPassword = type === "password";
+  const inputType = isPassword && isPwdVisible ? "text" : type;
 
   return (
     <div className={styles.container}>
@@ -29,16 +54,26 @@ const FormInput = ({
         {label}
       </label>
 
-      <input
-        id={id}
-        className={styles.input}
-        type={type}
-        placeholder={placeholder}
-        {...register(name, { valueAsNumber })}
-      />
+      <div className={styles.inputContainer}>
+        <input
+          id={id}
+          type={inputType}
+          placeholder={placeholder}
+          className={styles.input}
+          {...register(name, { valueAsNumber })}
+          {...rest}
+        />
+
+        {isPassword && (
+          <PasswordToggle
+            isVisible={isPwdVisible}
+            onToggle={() => setIsPwdVisible((prev) => !prev)}
+          />
+        )}
+      </div>
 
       {error && (
-        <span id={`${id}-error`} className={styles.error}>
+        <span className={styles.error} role="alert">
           {error.message}
         </span>
       )}

@@ -34,6 +34,7 @@ const LoginForm = () => {
         placeholder="Email"
         name="email"
         register={register}
+        maxLength={100}
         error={errors.email}
       />
 
@@ -43,6 +44,7 @@ const LoginForm = () => {
         placeholder="Password"
         name="password"
         register={register}
+        maxLength={20}
         error={errors.password}
       />
 
