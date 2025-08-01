@@ -2,3 +2,10 @@ node_modules
 docs/
 .env
 dist
+next-env.d.ts
+.pnp.*
+.next
+out
+build
+next-env.d.ts
+.vercel

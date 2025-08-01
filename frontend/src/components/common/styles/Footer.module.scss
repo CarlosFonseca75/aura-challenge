@@ -1,0 +1,24 @@
+.container {
+  display: flex;
+  justify-content: center;
+  column-gap: 1rem;
+  text-align: center;
+  padding: 1rem;
+  border-top: 1px solid var(--border-color);
+  background-color: var(--background-alt);
+}
+
+.icons {
+  display: flex;
+  gap: 1rem;
+}
+
+.icon {
+  color: var(--grey-color);
+  transition: color 0.2s ease-in-out;
+
+  &:hover {
+    color: var(--text-color);
+    cursor: pointer;
+  }
+}

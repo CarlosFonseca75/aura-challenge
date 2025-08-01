@@ -1,0 +1,36 @@
+{
+  "name": "aura-app",
+  "version": "0.1.0",
+  "description": "🚀 App for users management with Next.js and TypeScript.",
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "keywords": [
+    "Next.js",
+    "React",
+    "Web App",
+    "TypeScript",
+    "Frontend"
+  ],
+  "author": "Carlos Fonseca.",
+  "license": "ISC",
+  "dependencies": {
+    "next": "15.4.5",
+    "react": "19.1.0",
+    "react-bootstrap-icons": "^1.11.6",
+    "react-dom": "19.1.0"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.4.5",
+    "sass": "^1.89.2",
+    "typescript": "^5"
+  }
+}
