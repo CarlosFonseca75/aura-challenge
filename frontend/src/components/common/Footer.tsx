@@ -17,7 +17,7 @@ const Footer = () => {
           name="Linkedin"
           className={styles.icon}
           href={GITHUB_URL}
-          title="Github"
+          title="Linkedin"
         />
       </div>
     </footer>
