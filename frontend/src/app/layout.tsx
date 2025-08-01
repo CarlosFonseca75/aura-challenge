@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
-import { DM_Sans } from "next/font/google";
+import { Roboto } from "next/font/google";
 import { Footer } from "@/components/common/Footer";
 import "@/styles/globals.scss";
 
-const dmSans = DM_Sans({ subsets: ["latin"] });
+const roboto = Roboto({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Aura Search App",
@@ -18,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={dmSans.className}>
+      <body className={roboto.className}>
         {children}
         <Footer />
       </body>
