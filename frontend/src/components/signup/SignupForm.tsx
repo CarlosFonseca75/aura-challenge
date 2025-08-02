@@ -1,5 +1,7 @@
 "use client";
 
+import { useState } from "react";
+import type { Status, SignupUser } from "@/common/types";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/common/Button";
@@ -7,29 +9,44 @@ import { Icon } from "@/components/common/Icon";
 import { FormInput } from "@/components/common/FormInput";
 import { SignupSchema } from "@/common/schemas";
 import { toast } from "react-toastify";
+import { signup } from "./services";
+import { useRouter } from "next/navigation";
 import styles from "./styles/SignupForm.module.scss";
 
-interface FormData {
-  email: string;
-  firstName: string;
-  lastName: string;
-  password: string;
-  confirmPassword: string;
-}
-
 const SignupForm = () => {
+  const [status, setStatus] = useState<Status>("idle");
+
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>({
+  } = useForm<SignupUser>({
     resolver: zodResolver(SignupSchema),
-    defaultValues: {},
+    defaultValues: {
+      email: "cardfonseca07@gmail.com",
+      firstName: "Carlos Antonio",
+      lastName: "Díaz Fonseca",
+      password: "12345678",
+      confirmPassword: "12345678",
+    },
   });
 
-  const onSubmit = (data: FormData) => {
-    console.log("Works!", data);
-    toast.info("Successfully signed up! 🎉");
+  const onSubmit = async (user: SignupUser) => {
+    setStatus("loading");
+
+    const res = await signup(user);
+
+    if (!res.success) {
+      toast.error(res.message);
+      setStatus("error");
+      return;
+    }
+
+    toast.info("Signed up! Please log in 🎉");
+    setStatus("success");
+    router.push("/");
   };
 
   return (
@@ -84,7 +101,7 @@ const SignupForm = () => {
         error={errors.confirmPassword}
       />
 
-      <Button size="md" title="Let's Go!">
+      <Button size="md" title="Let's Go!" disabled={status === "loading"}>
         <Icon name="Stars" aria-hidden="true" />
         Join the ride!
       </Button>
