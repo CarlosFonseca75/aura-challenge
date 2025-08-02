@@ -10,13 +10,13 @@ const Footer = () => {
         <Icon
           name="Github"
           className={styles.icon}
-          href={LINKEDIN_URL}
+          href={GITHUB_URL}
           title="Github"
         />
         <Icon
           name="Linkedin"
           className={styles.icon}
-          href={GITHUB_URL}
+          href={LINKEDIN_URL}
           title="Linkedin"
         />
       </div>
