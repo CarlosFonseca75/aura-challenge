@@ -1,8 +1,10 @@
 import Link from "next/link";
 import { Icon } from "./Icon";
 import { NavItem } from "./NavItem";
-import styles from "./styles/Nav.module.scss";
 import { GITHUB_URL, LINKEDIN_URL } from "@/constants";
+import { SignOutButton } from "./SignOutButton";
+import { signOut } from "next-auth/react";
+import styles from "./styles/Nav.module.scss";
 
 interface Item {
   title: string;
@@ -24,6 +26,8 @@ const items: Item[] = [
 ];
 
 const Nav = () => {
+  const handleSignOut = () => signOut();
+
   return (
     <nav className={styles.nav}>
       <Link
@@ -46,6 +50,8 @@ const Nav = () => {
       </ul>
 
       <div className={styles.media}>
+        <SignOutButton />
+
         <Icon
           name="Github"
           className={styles.icon}
