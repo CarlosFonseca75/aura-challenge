@@ -1,14 +1,20 @@
 import { useId, useState, type InputHTMLAttributes as InputAttrs } from "react";
-import type { FieldError, UseFormRegister } from "react-hook-form";
+import type {
+  FieldError,
+  UseFormRegister,
+  FieldValues,
+  Path,
+} from "react-hook-form";
 import { Icon } from "./Icon";
 import styles from "./styles/FormInput.module.scss";
 
-interface FormInputProps extends InputAttrs<HTMLInputElement> {
+interface FormInputProps<T extends FieldValues>
+  extends InputAttrs<HTMLInputElement> {
   label: string;
-  name: string;
+  name: Path<T>;
   error?: FieldError;
   valueAsNumber?: boolean;
-  register: UseFormRegister<any>;
+  register: UseFormRegister<T>;
 }
 
 interface PasswordToggleProps {
@@ -32,7 +38,7 @@ const PasswordToggle = ({ isVisible, onToggle }: PasswordToggleProps) => {
   );
 };
 
-const FormInput = ({
+const FormInput = <T extends FieldValues>({
   type = "text",
   label,
   name,
@@ -41,7 +47,7 @@ const FormInput = ({
   register,
   valueAsNumber,
   ...rest
-}: FormInputProps) => {
+}: FormInputProps<T>) => {
   const id = useId();
   const [isPwdVisible, setIsPwdVisible] = useState(false);
 

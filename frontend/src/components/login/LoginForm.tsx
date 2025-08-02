@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Status } from "@/types";
+import type { Status } from "@/types";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/common/Button";
@@ -45,7 +45,7 @@ const LoginForm = () => {
 
     if (!res?.ok) {
       // TODO: Add alert system.
-      console.log("Error", res?.error);
+      console.log("Error", { error: res?.error, status });
       setStatus("error");
       return;
     }
