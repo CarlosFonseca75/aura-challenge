@@ -24,13 +24,6 @@ const SignupForm = () => {
     formState: { errors },
   } = useForm<SignupUser>({
     resolver: zodResolver(SignupSchema),
-    defaultValues: {
-      email: "cardfonseca07@gmail.com",
-      firstName: "Carlos Antonio",
-      lastName: "Díaz Fonseca",
-      password: "12345678",
-      confirmPassword: "12345678",
-    },
   });
 
   const onSubmit = async (user: SignupUser) => {
