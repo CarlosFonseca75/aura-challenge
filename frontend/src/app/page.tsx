@@ -1,6 +1,6 @@
-import { LoginCard } from "@/components/home/LoginCard";
+import { LoginCard } from "@/components/login/LoginCard";
 
-export default function Home() {
+export default function Login() {
   return (
     <main>
       <LoginCard />
