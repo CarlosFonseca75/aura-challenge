@@ -1,11 +1,12 @@
 import { LoginCard } from "@/components/login/LoginCard";
 import { Banner } from "@/components/common/Banner";
+import { Page } from "@/components/common/Page";
 
 export default function Login() {
   return (
-    <main>
+    <Page isPublic>
       <Banner />
       <LoginCard />
-    </main>
+    </Page>
   );
 }

@@ -1,9 +1,10 @@
+import { Users } from "@/components/dashboard/Users";
+import { Page } from "@/components/common/Page";
+
 export default function Dashboard() {
   return (
-    <main>
-      <p>Here!</p>
-      <p>we</p>
-      <p>go!</p>
-    </main>
+    <Page>
+      <Users />
+    </Page>
   );
 }
