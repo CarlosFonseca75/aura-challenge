@@ -3,7 +3,7 @@ import path from "node:path";
 
 const nextConfig: NextConfig = {
   sassOptions: {
-    prependData: `@use "mixins" as *; @use "variables" as *;`,
+    prependData: `@use "mixins" as *;`,
     includePaths: [path.join(__dirname, "src/styles")],
   },
 };
