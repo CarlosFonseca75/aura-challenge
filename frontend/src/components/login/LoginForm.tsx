@@ -1,13 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import type { Status } from "@/types";
+import type { Status } from "@/common/types";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/common/Button";
 import { Icon } from "@/components/common/Icon";
 import { FormInput } from "@/components/common/FormInput";
-import { LoginSchema } from "@/schemas";
+import { LoginSchema } from "@/common/schemas";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import styles from "./styles/LoginForm.module.scss";

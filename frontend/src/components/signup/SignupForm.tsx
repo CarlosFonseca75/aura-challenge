@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/common/Button";
 import { Icon } from "@/components/common/Icon";
 import { FormInput } from "@/components/common/FormInput";
-import { SignupSchema } from "@/schemas";
+import { SignupSchema } from "@/common/schemas";
 import styles from "./styles/SignupForm.module.scss";
 
 interface FormData {
