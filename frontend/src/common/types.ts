@@ -25,3 +25,9 @@ export interface ApiResponse<T> {
   status: HttpStatus;
   timestamp: Date;
 }
+
+export interface MenuItem {
+  title: string;
+  href: string;
+  ariaLabel?: string;
+}

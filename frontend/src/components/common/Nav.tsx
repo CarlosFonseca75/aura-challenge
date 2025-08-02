@@ -1,17 +1,13 @@
 import Link from "next/link";
 import { Icon } from "./Icon";
 import { NavItem } from "./NavItem";
+import { MobileNav } from "./MobileNav";
 import { GITHUB_URL, LINKEDIN_URL } from "@/constants";
 import { SignOutButton } from "./SignOutButton";
+import type { MenuItem } from "@/common/types";
 import styles from "./styles/Nav.module.scss";
 
-interface Item {
-  title: string;
-  href: string;
-  ariaLabel?: string;
-}
-
-const items: Item[] = [
+const items: MenuItem[] = [
   {
     title: "Dashboard",
     href: "/dashboard",
@@ -64,6 +60,8 @@ const Nav = () => {
           size={25}
         />
       </div>
+
+      <MobileNav items={items} />
     </nav>
   );
 };

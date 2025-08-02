@@ -9,10 +9,11 @@ interface NavProps {
   title: string;
   href: string;
   ariaLabel?: string;
+  onClick?: () => void;
 }
 
 const NavItem = (props: NavProps) => {
-  const { title, href, ariaLabel } = props;
+  const { title, href, ariaLabel, onClick } = props;
 
   const pathname = usePathname();
 
@@ -21,6 +22,7 @@ const NavItem = (props: NavProps) => {
       <Link
         href={href}
         aria-label={ariaLabel || title}
+        onClick={onClick}
         className={classNames(styles.navLink, {
           [styles.active]: pathname === href,
         })}
