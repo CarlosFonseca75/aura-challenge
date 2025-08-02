@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ToastContainer } from "react-toastify";
 import { Roboto } from "next/font/google";
 import { Footer } from "@/components/common/Footer";
 import "@/styles/globals.scss";
@@ -25,6 +26,12 @@ export default function RootLayout({
       <body className={roboto.className}>
         {children}
         <Footer />
+        <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          closeOnClick
+          pauseOnHover
+        />
       </body>
     </html>
   );

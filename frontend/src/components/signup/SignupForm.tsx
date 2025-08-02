@@ -6,6 +6,7 @@ import { Button } from "@/components/common/Button";
 import { Icon } from "@/components/common/Icon";
 import { FormInput } from "@/components/common/FormInput";
 import { SignupSchema } from "@/common/schemas";
+import { toast } from "react-toastify";
 import styles from "./styles/SignupForm.module.scss";
 
 interface FormData {
@@ -25,6 +26,7 @@ const SignupForm = () => {
 
   const onSubmit = (data: FormData) => {
     console.log("Works!", data);
+    toast.info("Successfully signed up! 🎉");
   };
 
   return (
