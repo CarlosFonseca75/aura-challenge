@@ -11,6 +11,8 @@ import styles from "./styles/SignupForm.module.scss";
 
 interface FormData {
   email: string;
+  firstName: string;
+  lastName: string;
   password: string;
   confirmPassword: string;
 }
@@ -22,6 +24,7 @@ const SignupForm = () => {
     formState: { errors },
   } = useForm<FormData>({
     resolver: zodResolver(SignupSchema),
+    defaultValues: {},
   });
 
   const onSubmit = (data: FormData) => {
@@ -39,6 +42,26 @@ const SignupForm = () => {
         register={register}
         maxLength={100}
         error={errors.email}
+      />
+
+      <FormInput
+        label="First Name:"
+        type="text"
+        placeholder="First Name"
+        name="firstName"
+        register={register}
+        maxLength={100}
+        error={errors.firstName}
+      />
+
+      <FormInput
+        label="Last Name:"
+        type="text"
+        placeholder="Last Name"
+        name="lastName"
+        register={register}
+        maxLength={100}
+        error={errors.lastName}
       />
 
       <FormInput

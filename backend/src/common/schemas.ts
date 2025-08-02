@@ -2,26 +2,35 @@ import { z } from "zod";
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-export const registerSchema = z.object({
-  email: z
-    .string("Email is required.")
-    .trim()
-    .regex(emailRegex, { message: "Invalid email format." }),
-  firstName: z.string("FirstName is required.").trim(),
-  lastName: z.string("LastName is required.").trim(),
-  password: z
-    .string("Password is required.")
-    .min(8, { message: "Password must be at least 8 characters." }),
-});
+export const registerSchema = z
+  .object({
+    email: z
+      .string()
+      .nonempty("Email is required")
+      .regex(emailRegex, "Invalid email format"),
+    password: z
+      .string()
+      .nonempty("Password is required")
+      .min(8, "Password is too short (min 8)")
+      .max(20, "Password is too long (max 20)"),
+    firstName: z.string().nonempty("First Name is required").trim(),
+    lastName: z.string().nonempty("Last Name is required").trim(),
+    confirmPassword: z.string().nonempty("Please confirm your password"),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords do not match",
+    path: ["confirmPassword"],
+  });
 
 export type RegisterInput = z.infer<typeof registerSchema>;
 
 export const loginSchema = z.object({
   email: z
-    .string("Email is required.")
+    .string()
+    .nonempty("Email is required")
     .trim()
-    .regex(emailRegex, { message: "Invalid email format." }),
-  password: z.string("Password is required."),
+    .regex(emailRegex, "Invalid email format"),
+  password: z.string("Password is required"),
 });
 
 export type LoginInput = z.infer<typeof loginSchema>;
@@ -31,7 +40,7 @@ export const updateProfileSchema = z
     email: z
       .string()
       .trim()
-      .regex(emailRegex, { message: "Invalid email format." })
+      .regex(emailRegex, "Invalid email format.")
       .optional(),
     firstName: z.string().trim().optional(),
     lastName: z.string().trim().optional(),
