@@ -1,0 +1,27 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--border-color);
+  background-color: var(--white-color);
+  border-radius: 1rem;
+}
+
+.title {
+  display: flex;
+}
+
+.itemText {
+  display: flex;
+  gap: 0.5rem;
+  background: #f9fafb;
+  padding: 0.4rem 0.6rem;
+  border-radius: 1rem;
+  font-weight: 500;
+  border: 1px solid #e5e7eb;
+
+  strong {
+    color: var(--text-muted);
+  }
+}
