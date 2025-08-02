@@ -1,0 +1,14 @@
+.navLink {
+  color: var(--black-color);
+  transition: color 0.1s ease-in-out;
+  font-weight: 500;
+
+  &:hover {
+    cursor: pointer;
+    color: var(--primary-color);
+  }
+}
+
+.active {
+  color: var(--primary-color);
+}

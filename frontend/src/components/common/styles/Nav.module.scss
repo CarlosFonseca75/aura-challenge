@@ -1,0 +1,35 @@
+.nav {
+  display: flex;
+  align-items: center;
+  column-gap: 3rem;
+  padding: 1.5rem;
+  width: var(--page-width);
+  margin: auto;
+  max-width: 100%;
+}
+
+.brandLink {
+  display: flex;
+  align-items: center;
+  column-gap: 1.5rem;
+  color: var(--black-color);
+}
+
+.navItems {
+  display: flex;
+  column-gap: 2rem;
+}
+
+.media {
+  display: flex;
+  gap: 1rem;
+  margin-left: auto;
+}
+
+.icon {
+  color: var(--black-color);
+
+  &:hover {
+    cursor: pointer;
+  }
+}

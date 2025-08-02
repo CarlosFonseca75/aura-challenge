@@ -8,17 +8,6 @@
   background-color: var(--white-color);
 }
 
-.icons {
-  display: flex;
-  gap: 1rem;
-}
-
-.icon {
-  color: var(--grey-color);
-  transition: color 0.2s ease-in-out;
-
-  &:hover {
-    color: var(--text-color);
-    cursor: pointer;
-  }
+.heart {
+  color: var(--primary-color);
 }
