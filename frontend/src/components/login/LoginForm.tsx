@@ -8,6 +8,7 @@ import { Button } from "@/components/common/Button";
 import { Icon } from "@/components/common/Icon";
 import { FormInput } from "@/components/common/FormInput";
 import { LoginSchema } from "@/common/schemas";
+import { toast } from "react-toastify";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import styles from "./styles/LoginForm.module.scss";
@@ -40,14 +41,13 @@ const LoginForm = () => {
     });
 
     if (!res?.ok) {
-      // TODO: Add alert system.
-      console.log("Error", { error: res?.error, status });
+      toast.error(res?.error);
       setStatus("error");
       return;
     }
 
     setStatus("success");
-
+    toast.info("Welcome to the army! 🎉");
     router.push("/dashboard");
   };
 
