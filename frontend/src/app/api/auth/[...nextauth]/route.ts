@@ -1,7 +1,7 @@
-import NextAuth from "next-auth";
+import NextAuth, { type AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
-const handler = NextAuth({
+const authOptions: AuthOptions = {
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -40,6 +40,7 @@ const handler = NextAuth({
         token.lastName = user.lastName;
         token.email = user.email;
       }
+
       return token;
     },
     async session({ session, token }) {
@@ -56,6 +57,8 @@ const handler = NextAuth({
     },
   },
   pages: { signIn: "/", error: "/" },
-});
+};
 
-export { handler as GET, handler as POST };
+const handler = NextAuth(authOptions);
+
+export { authOptions, handler as GET, handler as POST };
