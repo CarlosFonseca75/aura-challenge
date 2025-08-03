@@ -3,6 +3,8 @@ import chalk from "chalk";
 import helmet from "helmet";
 import cors from "cors";
 import morgan from "morgan";
+import swaggerUi from "swagger-ui-express";
+import swaggerJsdoc from "swagger-jsdoc";
 import env from "./config/env";
 import userRoutes from "./routes/userRoutes";
 import authRoutes from "./routes/authRoutes";
@@ -12,6 +14,32 @@ import { AppDataSource } from "./data-source";
 
 const app = express();
 const PORT = env.PORT || 3000;
+
+// 📚 Swagger config.
+const swaggerOptions = {
+  definition: {
+    openapi: "3.1.0",
+    info: {
+      title: "Aura API",
+      version: "1.0.0",
+      description:
+        "🚀 API REST for users management with Node.js, TypeScript and Express.",
+      contact: {
+        name: "Carlos Antonio Díaz Fonseca",
+        email: "cardfonseca07@gmail.com",
+      },
+    },
+    servers: [
+      {
+        url: `http://localhost:${PORT}`,
+        description: "Development server.",
+      },
+    ],
+  },
+  apis: ["./src/routes/*.ts"],
+};
+
+const swaggerSpec = swaggerJsdoc(swaggerOptions);
 
 // 🛡️ Security middleware.
 app.use(helmet());
@@ -45,10 +73,17 @@ app.get("/", (req, res) => {
     success: true,
     message: "Welcome to this amazing API! 🎉",
     version: "1.0.0",
-    endpoints: {},
+    endpoints: {
+      auth: "/api/auth",
+      users: "/api/users",
+      docs: "/api-docs",
+    },
     timestamp: Dayjs.nowUtc(),
   });
 });
+
+// 📚 Swagger Docs.
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // 🎯 API Routes.
 app.use("/api/users", userRoutes);

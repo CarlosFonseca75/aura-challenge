@@ -46,7 +46,7 @@ export class AuthService {
         firstName: newUser.firstName,
         lastName: newUser.lastName,
       },
-      status: HttpStatus.OK,
+      status: HttpStatus.Created,
       timestamp: Dayjs.nowUtc(),
     };
   };

@@ -8,17 +8,179 @@ import validateSchema from "../middlewares/zodValidator";
 const router: Router = Router();
 
 const userRepository = new UserRepository();
-const userService = new AuthService(userRepository);
-const userController = new AuthController(userService);
+const authService = new AuthService(userRepository);
+const authController = new AuthController(authService);
 
-// POST /api/auth/register - Register a user.
+/**
+ * @openapi
+ * /api/auth/register:
+ *   post:
+ *     summary: Register a new user
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 example: john@example.com
+ *               firstName:
+ *                 type: string
+ *                 example: John
+ *               lastName:
+ *                 type: string
+ *                 example: Doe
+ *               password:
+ *                 type: string
+ *                 example: "12345678"
+ *               confirmPassword:
+ *                 type: string
+ *                 example: "12345678"
+ *     responses:
+ *       201:
+ *         description: User registered successfully!
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: true
+ *                 message:
+ *                   type: string
+ *                   example: User registered successfully!
+ *                 data:
+ *                   type: object
+ *                   properties:
+ *                     id:
+ *                       type: string
+ *                       example: "f7d2a1c8-1234-4567-890a-bcdef1234567"
+ *                     email:
+ *                       type: string
+ *                       example: john@example.com
+ *                     firstName:
+ *                       type: string
+ *                       example: John
+ *                     lastName:
+ *                       type: string
+ *                       example: Doe
+ *                 status:
+ *                   type: number
+ *                   example: 201
+ *                 timestamp:
+ *                   type: string
+ *                   format: date-time
+ *                   example: "2025-08-03T18:00:00.000Z"
+ *       409:
+ *         description: Invalid credentials (email already exists)
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: Invalid credentials!
+ *                 status:
+ *                   type: number
+ *                   example: 409
+ *                 timestamp:
+ *                   type: string
+ *                   format: date-time
+ *                   example: "2025-08-03T18:00:00.000Z"
+ */
 router.post(
   "/register",
   validateSchema(registerSchema),
-  userController.register
+  authController.register
 );
 
-// POST /api/auth/login - Login user.
-router.post("/login", validateSchema(loginSchema), userController.login);
+/**
+ * @openapi
+ * /api/auth/login:
+ *   post:
+ *     summary: Login a user
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 example: john@example.com
+ *               password:
+ *                 type: string
+ *                 example: "12345678"
+ *     responses:
+ *       200:
+ *         description: User logged in successfully!
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: true
+ *                 message:
+ *                   type: string
+ *                   example: User logged in successfully!
+ *                 data:
+ *                   type: object
+ *                   properties:
+ *                     id:
+ *                       type: string
+ *                       example: "f7d2a1c8-1234-4567-890a-bcdef1234567"
+ *                     email:
+ *                       type: string
+ *                       example: john@example.com
+ *                     firstName:
+ *                       type: string
+ *                       example: John
+ *                     lastName:
+ *                       type: string
+ *                       example: Doe
+ *                     token:
+ *                       type: string
+ *                       example: yourSecureToken
+ *                 status:
+ *                   type: number
+ *                   example: 200
+ *                 timestamp:
+ *                   type: string
+ *                   format: date-time
+ *                   example: "2025-08-03T18:00:00.000Z"
+ *       401:
+ *         description: Invalid credentials (wrong email or password)
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: Invalid credentials!
+ *                 status:
+ *                   type: number
+ *                   example: 401
+ *                 timestamp:
+ *                   type: string
+ *                   format: date-time
+ *                   example: "2025-08-03T18:00:00.000Z"
+ */
+router.post("/login", validateSchema(loginSchema), authController.login);
 
 export default router;
