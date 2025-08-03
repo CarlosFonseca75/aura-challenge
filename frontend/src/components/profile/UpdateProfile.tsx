@@ -81,7 +81,7 @@ const UpdateProfile = () => {
           error={errors.lastName}
         />
 
-        <Button size="md" title="Let's Go!" disabled={status === "loading"}>
+        <Button size="md" title="Let's Go!" isLoading={status === "loading"}>
           <Icon name="Stars" aria-hidden="true" />
           Update Profile
         </Button>

@@ -72,7 +72,7 @@ const LoginForm = () => {
         error={errors.password}
       />
 
-      <Button size="md" title="Let's Go!">
+      <Button size="md" title="Let's Go!" isLoading={status === "loading"}>
         <Icon name="RocketTakeoffFill" aria-hidden="true" />
         Let&apos;s Go!
       </Button>

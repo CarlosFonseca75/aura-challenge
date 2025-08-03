@@ -94,7 +94,7 @@ const SignupForm = () => {
         error={errors.confirmPassword}
       />
 
-      <Button size="md" title="Let's Go!" disabled={status === "loading"}>
+      <Button size="md" title="Let's Go!" isLoading={status === "loading"}>
         <Icon name="Stars" aria-hidden="true" />
         Join the ride!
       </Button>
