@@ -1,0 +1,27 @@
+.container {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border: 1px solid var(--border-color);
+  background-color: var(--white-color);
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.column {
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+  background-color: var(--background-alt);
+  padding: 0.5rem 1rem;
+}
+
+.row:last-child .cell {
+  border: none;
+}
+
+.cell {
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
