@@ -45,13 +45,13 @@ const userController = new UserController(userService);
  *                         example: "f7d2a1c8-1234-4567-890a-bcdef1234567"
  *                       email:
  *                         type: string
- *                         example: john@example.com
+ *                         example: carlos@example.com
  *                       firstName:
  *                         type: string
- *                         example: John
+ *                         example: Carlos
  *                       lastName:
  *                         type: string
- *                         example: Doe
+ *                         example: Fonseca
  *                 status:
  *                   type: number
  *                   example: 200
@@ -113,13 +113,13 @@ router.get("/", authValidator, userController.getUsers);
  *                       example: "f7d2a1c8-1234-4567-890a-bcdef1234567"
  *                     email:
  *                       type: string
- *                       example: john@example.com
+ *                       example: carlos@example.com
  *                     firstName:
  *                       type: string
- *                       example: John
+ *                       example: Carlos
  *                     lastName:
  *                       type: string
- *                       example: Doe
+ *                       example: Fonseca
  *                 status:
  *                   type: number
  *                   example: 200
@@ -189,13 +189,13 @@ router.get("/profile", authValidator, userController.getProfile);
  *               email:
  *                 type: string
  *                 format: email
- *                 example: john.new@example.com
+ *                 example: carlos.new@example.com
  *               firstName:
  *                 type: string
- *                 example: Johnathan
+ *                 example: Carlos
  *               lastName:
  *                 type: string
- *                 example: Doe
+ *                 example: Fonseca
  *     responses:
  *       200:
  *         description: Profile updated successfully!
@@ -218,13 +218,13 @@ router.get("/profile", authValidator, userController.getProfile);
  *                       example: "f7d2a1c8-1234-4567-890a-bcdef1234567"
  *                     email:
  *                       type: string
- *                       example: john.new@example.com
+ *                       example: carlos.new@example.com
  *                     firstName:
  *                       type: string
- *                       example: Johnathan
+ *                       example: Carlos
  *                     lastName:
  *                       type: string
- *                       example: Doe
+ *                       example: Fonseca
  *                 status:
  *                   type: number
  *                   example: 200

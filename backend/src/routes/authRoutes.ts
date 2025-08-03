@@ -26,19 +26,19 @@ const authController = new AuthController(authService);
  *             properties:
  *               email:
  *                 type: string
- *                 example: john@example.com
+ *                 example: carlos@example.com
  *               firstName:
  *                 type: string
- *                 example: John
+ *                 example: Carlos
  *               lastName:
  *                 type: string
- *                 example: Doe
+ *                 example: Fonseca
  *               password:
  *                 type: string
- *                 example: "12345678"
+ *                 example: "yourSafePwd"
  *               confirmPassword:
  *                 type: string
- *                 example: "12345678"
+ *                 example: "yourSafePwd"
  *     responses:
  *       201:
  *         description: User registered successfully!
@@ -61,13 +61,13 @@ const authController = new AuthController(authService);
  *                       example: "f7d2a1c8-1234-4567-890a-bcdef1234567"
  *                     email:
  *                       type: string
- *                       example: john@example.com
+ *                       example: carlos@example.com
  *                     firstName:
  *                       type: string
- *                       example: John
+ *                       example: Carlos
  *                     lastName:
  *                       type: string
- *                       example: Doe
+ *                       example: Fonseca
  *                 status:
  *                   type: number
  *                   example: 201
@@ -117,10 +117,10 @@ router.post(
  *             properties:
  *               email:
  *                 type: string
- *                 example: john@example.com
+ *                 example: carlos@example.com
  *               password:
  *                 type: string
- *                 example: "12345678"
+ *                 example: "yourSafePwd"
  *     responses:
  *       200:
  *         description: User logged in successfully!
@@ -143,13 +143,13 @@ router.post(
  *                       example: "f7d2a1c8-1234-4567-890a-bcdef1234567"
  *                     email:
  *                       type: string
- *                       example: john@example.com
+ *                       example: carlos@example.com
  *                     firstName:
  *                       type: string
- *                       example: John
+ *                       example: Carlos
  *                     lastName:
  *                       type: string
- *                       example: Doe
+ *                       example: Fonseca
  *                     token:
  *                       type: string
  *                       example: yourSecureToken
