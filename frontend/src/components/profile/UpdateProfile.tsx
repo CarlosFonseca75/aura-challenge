@@ -19,11 +19,7 @@ const UpdateProfile = () => {
 
   const router = useRouter();
 
-  const {
-    data: session,
-    status: sessionStatus,
-    update: refreshSession,
-  } = useSession();
+  const { data: session, update: refreshSession } = useSession();
 
   const {
     register,

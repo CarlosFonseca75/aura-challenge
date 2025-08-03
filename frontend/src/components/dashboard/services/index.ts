@@ -1,7 +1,7 @@
 import type { User } from "@/common/types";
 import { apiFetcher } from "@/utils/fetcher";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { authOptions } from "@/common/auth";
 
 export const getUsers = async () => {
   const session = await getServerSession(authOptions);
