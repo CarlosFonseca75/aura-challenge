@@ -27,4 +27,9 @@
     padding: 1.8rem 3rem;
     font-size: 1.8rem;
   }
+
+  &--blocked {
+    pointer-events: none;
+    background-color: var(--primary-border);
+  }
 }
