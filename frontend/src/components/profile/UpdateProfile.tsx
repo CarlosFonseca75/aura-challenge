@@ -11,12 +11,19 @@ import { useForm } from "react-hook-form";
 import { ProfileSchema } from "@/common/schemas";
 import { updateProfile } from "./services";
 import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 import styles from "./styles/UpdateProfile.module.scss";
 
 const UpdateProfile = () => {
   const [status, setStatus] = useState<Status>("idle");
 
-  const { data: session, status: sessionStatus } = useSession();
+  const router = useRouter();
+
+  const {
+    data: session,
+    status: sessionStatus,
+    update: refreshSession,
+  } = useSession();
 
   const {
     register,
@@ -31,9 +38,6 @@ const UpdateProfile = () => {
   });
 
   // TODO: Add a nice skeleton loader.
-  if (sessionStatus === "loading") return <p>Loading...</p>;
-
-  if (!session) return <p>You are not logged in.</p>;
 
   const onSubmit = async (profile: Profile) => {
     setStatus("loading");
@@ -46,8 +50,10 @@ const UpdateProfile = () => {
       return;
     }
 
+    refreshSession();
     toast.info("Profile Updated! 🎉");
     setStatus("success");
+    router.push("/dashboard");
   };
 
   return (
