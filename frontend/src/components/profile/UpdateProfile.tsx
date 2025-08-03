@@ -9,6 +9,7 @@ import { Button } from "@/components/common/Button";
 import { Icon } from "@/components/common/Icon";
 import { useForm } from "react-hook-form";
 import { ProfileSchema } from "@/common/schemas";
+import { updateProfile } from "./services";
 import { toast } from "react-toastify";
 import styles from "./styles/UpdateProfile.module.scss";
 
@@ -37,7 +38,13 @@ const UpdateProfile = () => {
   const onSubmit = async (profile: Profile) => {
     setStatus("loading");
 
-    console.log({ profile });
+    const res = await updateProfile(profile);
+
+    if (!res.success) {
+      toast.error(res.message);
+      setStatus("error");
+      return;
+    }
 
     toast.info("Profile Updated! 🎉");
     setStatus("success");
