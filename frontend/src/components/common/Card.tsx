@@ -1,7 +1,9 @@
+import classNames from "classnames";
 import styles from "./styles/Card.module.scss";
 
 interface ContainerProps {
   children: React.ReactNode;
+  className?: string;
 }
 
 interface TitleProps {
@@ -13,8 +15,17 @@ interface ItemProps {
   text: string;
 }
 
+interface TextProps {
+  children: React.ReactNode;
+  className?: string;
+}
+
 const Container = (props: ContainerProps) => {
-  return <article className={styles.card}>{props.children}</article>;
+  return (
+    <article className={classNames(styles.card, props.className)}>
+      {props.children}
+    </article>
+  );
 };
 
 const Title = (props: TitleProps) => {
@@ -30,9 +41,14 @@ const Item = (props: ItemProps) => {
   );
 };
 
+const Text = (props: TextProps) => {
+  return <p className={styles.text}>{props.children}</p>;
+};
+
 const Card = Object.assign(Container, {
   Title,
   Item,
+  Text,
 });
 
 export { Card };
