@@ -5,14 +5,14 @@ import Link from "next/link";
 import styles from "./styles/NavItem.module.scss";
 import classNames from "classnames";
 
-interface NavProps {
+interface NavItemProps {
   title: string;
   href: string;
   ariaLabel?: string;
   onClick?: () => void;
 }
 
-const NavItem = (props: NavProps) => {
+const NavItem = (props: NavItemProps) => {
   const { title, href, ariaLabel, onClick } = props;
 
   const pathname = usePathname();

@@ -5,8 +5,6 @@ import styles from "./styles/Users.module.scss";
 const Users = async () => {
   const res = await getUsers();
 
-  console.log(res);
-
   if (!res.success) return <p>Oops, something went wrong!</p>;
 
   if (!res.data?.length) return <p>No users found!</p>;

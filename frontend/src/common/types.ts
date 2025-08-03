@@ -2,12 +2,22 @@ import { HttpStatus } from "@/common/enums";
 
 export type Status = "idle" | "loading" | "error" | "success";
 
+export interface LoginUser {
+  email: string;
+  password: string;
+}
+
 export interface SignupUser {
   email: string;
   firstName: string;
   lastName: string;
   password: string;
   confirmPassword: string;
+}
+
+export interface Profile {
+  firstName: string;
+  lastName: string;
 }
 
 export interface User {

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import type { Status } from "@/common/types";
+import type { LoginUser, Status } from "@/common/types";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/common/Button";
@@ -13,11 +13,6 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import styles from "./styles/LoginForm.module.scss";
 
-interface FormData {
-  email: string;
-  password: string;
-}
-
 const LoginForm = () => {
   const [status, setStatus] = useState<Status>("idle");
 
@@ -27,11 +22,15 @@ const LoginForm = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>({
+  } = useForm<LoginUser>({
     resolver: zodResolver(LoginSchema),
+    defaultValues: {
+      email: "cardfonseca07@gmail.com",
+      password: "12345678",
+    },
   });
 
-  const onSubmit = async (data: FormData) => {
+  const onSubmit = async (data: LoginUser) => {
     setStatus("loading");
 
     const res = await signIn("credentials", {

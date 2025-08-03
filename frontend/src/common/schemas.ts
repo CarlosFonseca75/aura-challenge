@@ -33,3 +33,8 @@ export const SignupSchema = z
     message: "Passwords do not match",
     path: ["confirmPassword"],
   });
+
+export const ProfileSchema = z.object({
+  firstName: z.string().nonempty("First Name is required").trim(),
+  lastName: z.string().nonempty("Last Name is required").trim(),
+});
