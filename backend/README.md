@@ -145,7 +145,7 @@ curl -X PUT http://localhost:3000/api/users/profile \
 src/
 ├── common/              # Enums, Zod Schemas, Types, and shared utilities
 ├── config/              # Environment variables and global configuration
-├── controllers/         # Handle HTTP requests and responses (business logic entry point)
+├── controllers/         # Handle HTTP requests and responses.
 ├── entity/              # TypeORM entities (database models)
 ├── middlewares/         # Express middlewares (auth, validation, error handling, etc.)
 ├── repositories/        # Database access layer using TypeORM repositories
