@@ -182,3 +182,4 @@ These supporting libraries improve developer experience, security, logging, and 
 - **Configuration of ESLint**: To enforce consistent code style and catch potential issues early.
 - **Stronger Passwords**: To enforce safe and more secure passwords. (At least one number, uppercase, lowercase, etc).
 - **JS Docs (optional)**: To add descriptions and detailed explanations for the services. (I prefer clean code that explains itself rather than excessive JSDocs.)
+- **Database migrations**: To handle incremental and versioned changes to the database schema safely.
