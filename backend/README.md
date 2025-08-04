@@ -175,9 +175,9 @@ These supporting libraries improve developer experience, security, logging, and 
 - **Two-factor authentication (2FA)** to enhance login security via SMS, email, or other methods.
 - **Implementation of refresh tokens** to manage active sessions securely and improve user experience.
 - **Rate limiting** to protect the API from brute force attacks and abuse.
-- **Automated testing** unit, integration, and end-to-end with cypress to ensure code quality and prevent regressions.
 - **Alerting system** to quickly detect and respond to production issues.
 - **Database optimization** using indexes and efficient queries.
 - **Lang** to support multiple languages in messages and responses.
 - **Deeper validation and sanitization** to protect against malicious or corrupted inputs.
 - **Configuration of ESLint**: To enforce consistent code style and catch potential issues early.
+- **Stronger Passwords**: To enforce safe and more secure passwords. (At least one number, uppercase, lowercase, etc).
