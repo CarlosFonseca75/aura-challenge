@@ -111,6 +111,7 @@ AppDataSource.initialize()
       console.log(chalk.magenta(`🏥 Health: http://localhost:${PORT}/health`));
       console.log(chalk.blue(`💻 Users: http://localhost:${PORT}/api/users`));
       console.log(chalk.blue(`🔐 Auth: http://localhost:${PORT}/api/auth`));
+      console.log(chalk.blue(`📚 Auth: http://localhost:${PORT}/api-docs`));
       console.log(chalk.gray("Press Ctrl+C to stop the server."));
     });
   })
