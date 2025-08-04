@@ -2,6 +2,7 @@ import { z } from "zod";
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+// TODO: Add stronger password requirements.
 export const registerSchema = z
   .object({
     email: z

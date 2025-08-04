@@ -29,6 +29,8 @@ function authValidator(req: CustomRequest, res: Response, next: NextFunction) {
     });
   }
 
+  // TODO: Validate if the decoded user is currently active or exists in DB.
+
   req.user = decoded;
 
   next();

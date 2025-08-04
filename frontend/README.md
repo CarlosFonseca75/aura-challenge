@@ -107,3 +107,4 @@ These supporting libraries enhance developer productivity, form handling, UI, va
 - **More robust state management** (e.g., Zustand or Redux Toolkit) depending on the size and complexity of the app.
 - **Improved SEO and accessibility** by ensuring the app is search-engine friendly and meets accessibility standards.
 - **Performance optimization** with lazy loading, code splitting, and image optimization for faster load times. (useCallback, useMemo, debounce in case of text searches, etc)
+- **Lighthouse checks** to keep an eye on performance, accessibility, best practices and SEO.

@@ -1,6 +1,7 @@
 import type { Request } from "express";
 import { HttpStatus } from "./enums";
 
+// * We are using a generic for a correct/dynamic data type.
 export interface ApiResponse<T> {
   success: boolean;
   message: string;

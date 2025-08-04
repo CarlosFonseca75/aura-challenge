@@ -8,7 +8,9 @@ import styles from "./styles/Profile.module.scss";
 const Profile = () => {
   const { data: session, status } = useSession();
 
-  // TODO: Add a nice skeleton loader.
+  // TODO: Improve the design of error and loading states.
+  // TODO: Close the session properly in case of an error.
+
   if (status === "loading") return <p>Loading...</p>;
 
   if (!session) return <p>You are not logged in.</p>;

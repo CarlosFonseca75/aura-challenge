@@ -12,6 +12,7 @@ const userRepository = new UserRepository();
 const userService = new UserService(userRepository);
 const userController = new UserController(userService);
 
+// TODO: Add a PATCH route for updating user status.
 /**
  * @openapi
  * /api/users:

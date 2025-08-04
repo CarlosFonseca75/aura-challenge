@@ -41,6 +41,8 @@ export const authOptions: AuthOptions = {
         token.email = user.email;
       }
 
+      // TODO: Add refresh token logic.
+
       return token;
     },
     async session({ session, token }) {
@@ -57,7 +59,7 @@ export const authOptions: AuthOptions = {
       const data = await res.json();
 
       if (!res.ok) {
-        // TODO: Close and end the entire session.
+        // TODO: Handle a session error.
       }
 
       const { data: user } = data;

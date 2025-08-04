@@ -6,6 +6,7 @@ import {
   UpdateDateColumn,
 } from "typeorm";
 
+// TODO: Add an status field to know if a user in active, blocked, inactive, etc.
 @Entity()
 export class User {
   @PrimaryGeneratedColumn("uuid")

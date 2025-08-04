@@ -22,6 +22,7 @@ interface CellProps {
   children: React.ReactNode;
 }
 
+// * This component is using a design patter called "Composite Components!"
 const Container = (props: ContainerProps) => {
   return (
     <div className={styles.container}>

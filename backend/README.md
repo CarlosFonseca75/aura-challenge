@@ -143,6 +143,7 @@ curl -X PUT http://localhost:3000/api/users/profile \
 
 ```
 src/
+├── __tests__/           # Unit tests of the services using Jest.
 ├── common/              # Enums, Zod Schemas, Types, and shared utilities
 ├── config/              # Environment variables and global configuration
 ├── controllers/         # Handle HTTP requests and responses.
@@ -183,3 +184,4 @@ These supporting libraries improve developer experience, security, logging, and 
 - **Stronger Passwords**: To enforce safe and more secure passwords. (At least one number, uppercase, lowercase, etc).
 - **JS Docs (optional)**: To add descriptions and detailed explanations for the services. (I prefer clean code that explains itself rather than excessive JSDocs.)
 - **Database migrations**: To handle incremental and versioned changes to the database schema safely.
+- **Robust login system**: with features like failed attempt tracking, account lockouts, and alerting to enhance security.

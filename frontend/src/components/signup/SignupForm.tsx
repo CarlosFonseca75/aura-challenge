@@ -37,6 +37,8 @@ const SignupForm = () => {
       return;
     }
 
+    // TODO: Log in automatically after signing up.
+
     toast.info("Signed up! Please log in 🎉");
     setStatus("success");
     router.push("/");

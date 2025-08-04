@@ -85,6 +85,8 @@ export class AuthService {
 
     const jwt = Jwt.sign(payload);
 
+    // TODO: Add two-factor authentication.
+
     return {
       success: true,
       message: "User logged in successfully!",

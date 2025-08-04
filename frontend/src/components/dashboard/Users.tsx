@@ -4,7 +4,12 @@ import { Dayjs } from "@/utils/date";
 import { User } from "@/common/types";
 import styles from "./styles/Users.module.scss";
 
+// * This is a server side component.
 const Users = async () => {
+  // TODO: Improve the design of error and empty states.
+  // TODO: Add pagination to limit the number of displayed users.
+  // TODO: Add filtering by name, email, first name, etc., and persist filters in the URL.
+
   const res = await getUsers();
 
   if (!res.success) return <p>Oops, something went wrong!</p>;

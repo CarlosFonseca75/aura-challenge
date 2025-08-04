@@ -13,6 +13,7 @@ interface EnvConfig {
   JWT_EXPIRES_IN: number;
 }
 
+// * Centralized file for exporting the env variables.
 function getEnv(): EnvConfig {
   const {
     PORT,

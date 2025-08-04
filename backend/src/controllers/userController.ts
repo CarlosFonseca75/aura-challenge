@@ -2,6 +2,7 @@ import type { Request, Response } from "express";
 import type { CustomRequest } from "../common/types";
 import { UserService } from "../services/userService";
 
+// TODO: Add a new controller for updating user status.
 export class UserController {
   constructor(private userService: UserService) {}
 

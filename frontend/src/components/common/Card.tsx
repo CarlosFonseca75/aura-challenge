@@ -20,6 +20,7 @@ interface TextProps {
   className?: string;
 }
 
+// * This component is using a design patter called "Composite Components!"
 const Container = (props: ContainerProps) => {
   return (
     <article className={classNames(styles.card, props.className)}>

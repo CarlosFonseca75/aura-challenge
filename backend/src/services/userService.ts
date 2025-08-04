@@ -8,6 +8,8 @@ export class UserService {
   constructor(private userRepository: UserRepository) {}
 
   getUsers = async (): Promise<ApiResponse<User[]>> => {
+    // TODO: Implement pagination to limit the number of users returned per request.
+
     const users = await this.userRepository.find();
 
     return {
