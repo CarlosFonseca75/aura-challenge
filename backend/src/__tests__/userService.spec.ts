@@ -6,12 +6,16 @@ import { User } from "../entity/user";
 
 const mockFind = jest.fn();
 const mockFindById = jest.fn();
+const mockUpdate = jest.fn();
+const mockFindOneByEmail = jest.fn();
 
 jest.mock("../repositories/userRepository", () => {
   return {
     UserRepository: jest.fn().mockImplementation(() => ({
       find: mockFind,
       findById: mockFindById,
+      findOneByEmail: mockFindOneByEmail,
+      update: mockUpdate,
     })),
   };
 });
@@ -75,5 +79,29 @@ describe("UserService", () => {
     expect(mockFindById).toHaveBeenCalledTimes(1);
     expect(result.status).toBe(HttpStatus.NotFound);
     expect(result.data).toBeUndefined();
+  });
+
+  it("should have conflict if email in in use", async () => {
+    const fakeUserOne: Partial<User> = {
+      id: "1",
+      email: "old@example.com",
+    };
+
+    // Another user with the same email.
+    const fakeUserTwo: Partial<User> = {
+      id: "2",
+      email: "new@gmail.com",
+    };
+
+    mockFindById.mockResolvedValue(fakeUserOne);
+    mockFindOneByEmail.mockResolvedValue(fakeUserTwo);
+
+    const result = await userService.updateProfile("1", {
+      email: "new@gmail.com",
+    });
+
+    expect(mockFindById).toHaveBeenCalledWith("1");
+    expect(mockFindOneByEmail).toHaveBeenCalledWith("new@gmail.com");
+    expect(result.status).toBe(HttpStatus.Conflict);
   });
 });
