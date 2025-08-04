@@ -104,4 +104,25 @@ describe("UserService", () => {
     expect(mockFindOneByEmail).toHaveBeenCalledWith("new@gmail.com");
     expect(result.status).toBe(HttpStatus.Conflict);
   });
+
+  it("should update user successfully", async () => {
+    const oldUser: Partial<User> = { id: "1", email: "old@mail.com" };
+
+    // New user data.
+    const updatedUser: Partial<User> = { id: "1", email: "new@mail.com" };
+
+    mockFindById.mockResolvedValue(oldUser);
+    mockFindOneByEmail.mockResolvedValue(null);
+    mockUpdate.mockResolvedValue(updatedUser);
+
+    const result = await userService.updateProfile("1", {
+      email: "new@mail.com",
+    });
+
+    expect(mockFindById).toHaveBeenCalledWith("1");
+    expect(mockFindOneByEmail).toHaveBeenCalledWith("new@mail.com");
+    expect(mockUpdate).toHaveBeenCalledTimes(1);
+    expect(result.status).toBe(HttpStatus.OK);
+    expect(result.data).toEqual(updatedUser);
+  });
 });
