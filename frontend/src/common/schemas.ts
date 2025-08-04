@@ -35,6 +35,10 @@ export const SignupSchema = z
   });
 
 export const ProfileSchema = z.object({
+  email: z
+    .string()
+    .nonempty("Email is required")
+    .regex(emailRegex, "Invalid email format"),
   firstName: z.string().nonempty("First Name is required").trim(),
   lastName: z.string().nonempty("Last Name is required").trim(),
 });

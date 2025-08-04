@@ -66,7 +66,7 @@ export const authOptions: AuthOptions = {
         id: token.id,
         firstName: user.firstName,
         lastName: user.lastName,
-        email: token.email,
+        email: user.email,
       };
 
       session.accessToken = token.accessToken;

@@ -28,6 +28,7 @@ const UpdateProfile = () => {
   } = useForm<Profile>({
     resolver: zodResolver(ProfileSchema),
     values: {
+      email: session?.user.email ?? "",
       firstName: session?.user.firstName ?? "",
       lastName: session?.user.lastName ?? "",
     },
@@ -57,6 +58,16 @@ const UpdateProfile = () => {
       <h1>Profile! 🚀</h1>
 
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+        <FormInput
+          label="Email:"
+          type="email"
+          placeholder="Email"
+          name="email"
+          register={register}
+          maxLength={100}
+          error={errors.email}
+        />
+
         <FormInput
           label="First Name:"
           type="text"

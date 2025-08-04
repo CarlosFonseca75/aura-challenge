@@ -62,7 +62,7 @@ export class UserService {
     if (email) {
       const emailExists = await this.userRepository.findOneByEmail(email);
 
-      if (emailExists.id !== id) {
+      if (emailExists && emailExists.id !== id) {
         return {
           success: false,
           message: "Email already in use!",
