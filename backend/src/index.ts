@@ -124,3 +124,5 @@ process.on("SIGINT", () => {
   console.log(chalk.red("\n👋 See you later! Shutting down API..."));
   process.exit(0);
 });
+
+module.exports = app;
