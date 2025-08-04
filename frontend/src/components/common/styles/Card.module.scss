@@ -15,11 +15,11 @@
 .itemText {
   display: flex;
   gap: 0.5rem;
-  background: #f9fafb;
+  background-color: var(--background-color);
   padding: 0.4rem 0.6rem;
   border-radius: 1rem;
   font-weight: 500;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--border-color);
 
   strong {
     color: var(--text-muted);

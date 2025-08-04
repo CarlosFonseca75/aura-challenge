@@ -11,7 +11,7 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  title: "Aura Search App",
+  title: "Aura App",
   description: "App for users management with Next.js and TypeScript.",
   keywords: ["Next.js", "React", "Web App", "TypeScript", "Frontend"],
 };
