@@ -180,3 +180,4 @@ These supporting libraries improve developer experience, security, logging, and 
 - **Database optimization** using indexes and efficient queries.
 - **Lang** to support multiple languages in messages and responses.
 - **Deeper validation and sanitization** to protect against malicious or corrupted inputs.
+- **Configuration of ESLint**: To enforce consistent code style and catch potential issues early.
