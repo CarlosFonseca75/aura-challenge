@@ -27,6 +27,9 @@ export class UserRepository implements IUserRepository {
         "createdAt",
         "updatedAt",
       ],
+      order: {
+        createdAt: "desc",
+      },
     });
   }
 
