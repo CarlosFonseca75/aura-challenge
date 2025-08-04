@@ -16,7 +16,7 @@ const Profile = () => {
   const { email, firstName, lastName } = session.user;
 
   return (
-    <Card>
+    <Card className={styles.card}>
       <Card.Title title="Profile! 🚀" />
 
       <Card.Text>

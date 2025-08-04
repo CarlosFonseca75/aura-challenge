@@ -1,3 +1,11 @@
+.card {
+  width: 100%;
+
+  @include media-breakpoint("md") {
+    width: 40rem;
+  }
+}
+
 .link {
   color: var(--text-color);
 
