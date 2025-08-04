@@ -1,3 +1,4 @@
+import https from "node:https";
 import express from "express";
 import chalk from "chalk";
 import helmet from "helmet";
@@ -118,6 +119,15 @@ AppDataSource.initialize()
   .catch((error) => {
     console.log(chalk.red.bold("⚠️ Error connecting to DB:", error));
   });
+
+// Ping every 5 minutes to keep the server awake on "render".
+setInterval(() => {
+  https.get("https://aura-challenge.onrender.com/health", (res) => {
+    res.on("end", () => {
+      console.log(chalk.gray("🟢 Ping to stay awake."));
+    });
+  });
+}, 5 * 60 * 1000);
 
 // 🛑 Shutting down.
 process.on("SIGINT", () => {
