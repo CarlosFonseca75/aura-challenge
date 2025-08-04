@@ -1,0 +1,38 @@
+.notFound {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+  flex: 1;
+}
+
+.title {
+  font-size: 4.5rem;
+
+  @include media-breakpoint("md") {
+    font-size: 6rem;
+  }
+}
+
+.subtitle {
+  font-size: 2rem;
+
+  @include media-breakpoint("md") {
+    font-size: 3rem;
+  }
+}
+
+.link {
+  font-size: 1.8rem;
+  margin-top: 0.5rem;
+  font-weight: 500;
+
+  @include media-breakpoint("md") {
+    font-size: 2rem;
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
