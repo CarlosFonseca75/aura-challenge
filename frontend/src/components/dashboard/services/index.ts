@@ -10,7 +10,7 @@ export const getUsers = async () => {
 
   return apiFetcher<User[]>(url, {
     method: "GET",
-    cache: "no-cache",
+    next: { revalidate: 0 },
     headers: {
       Authorization: `Bearer ${session?.accessToken}`,
     },
