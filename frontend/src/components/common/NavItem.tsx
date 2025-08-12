@@ -18,7 +18,7 @@ const NavItem = (props: NavItemProps) => {
   const pathname = usePathname();
 
   return (
-    <li>
+    <li role="menuitem">
       <Link
         href={href}
         aria-label={ariaLabel || title}
